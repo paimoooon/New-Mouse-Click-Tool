@@ -10,6 +10,8 @@ Made several changes:
 - The waiting interval before starting is decreased to three seconds.
 - UI is slightly optimized and translated to English.
 
+Download the program on the [release](https://github.com/paimoooon/New-Mouse-Click-Tool/releases) page.
+
 ## Note
 
 This program automatedly simulates the clicking of one of the mouse buttons at a fixed frequency. It is useful for tasks such as automatically playing through the plot cutscenes of a certain dead anime game.

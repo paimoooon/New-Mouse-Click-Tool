@@ -97,60 +97,110 @@ namespace MouseClickTool
             }
         }
 
+        private bool isTaskRunning = false; // Added boolean variable
+
         public Form1()
         {
             InitializeComponent();
             this.comboBox1.SelectedIndex = 0;
             is_begin.Click += (s, e) =>
             {
-                if (is_begin.Text.Equals("停止"))
+                if (!isTaskRunning) // Task is not running
                 {
-                    Environment.Exit(0);
-                    return;
-                }
-                if (int.TryParse(is_ms.Text, out int result) && result > 0)
-                {
-                    is_ms.ReadOnly = true;
-                    Task.Factory.StartNew(async () =>
+                    if (int.TryParse(is_ms.Text, out int result) && result > 0)
                     {
-                        await Task.Run(() =>
+                        is_ms.ReadOnly = true;
+                        isTaskRunning = true; // Start the task
+                        is_begin.Text = "Stop";
+                        Task.Factory.StartNew(async () =>
                         {
-                            for (int i = 1; i < 5; i++)
+                            await Task.Run(() =>
                             {
-                                is_begin.Text = string.Format("开始({0})", 5 - i);
-                                Thread.Sleep(1000);
+                                for (int i = 1; i < 3; i++)
+                                {
+                                    if (!isTaskRunning) return; // Check if task should be stopped
+                                    is_begin.Invoke((MethodInvoker)(() =>
+                                    {
+                                        is_begin.Text = string.Format("Start({0})", 3 - i);
+                                    }));
+                                    Thread.Sleep(1000);
+                                }
+                            });
+                            if (isTaskRunning) // Check if task should be stopped
+                            {
+                                is_begin.Invoke((MethodInvoker)(() =>
+                                {
+                                    is_begin.Text = "Stop";
+                                }));
+                                is_ms.Invoke((MethodInvoker)(() =>
+                                {
+                                    is_ms.ReadOnly = false;
+                                }));
+                            }
+
+                            if (this.comboBox1.SelectedIndex == 0)
+                            {
+                                for (; ; )
+                                {
+                                    if (!isTaskRunning) return; // Check if task should be stopped
+                                    await Task.Run(() =>
+                                    {
+                                        MouseSimulator.ClickLeftMouseButton();
+                                        Thread.Sleep(result);
+                                    });
+                                }
+                            }
+                            else
+                            {
+                                for (; ; )
+                                {
+                                    if (!isTaskRunning) return; // Check if task should be stopped
+                                    await Task.Run(() =>
+                                    {
+                                        MouseSimulator.ClickRightMouseButton();
+                                        Thread.Sleep(result);
+                                    });
+                                }
                             }
                         });
-                        is_begin.Text = "停止";
-                        if (this.comboBox1.SelectedIndex == 0)
-                        {
-                            for (; ; )
-                            {
-                                await Task.Run(() =>
-                                {
-                                    MouseSimulator.ClickLeftMouseButton();
-                                    Thread.Sleep(result);
-                                });
-                            }
-                        }
-                        else
-                        {
-                            for (; ; )
-                            {
-                                await Task.Run(() =>
-                                {
-                                    MouseSimulator.ClickRightMouseButton();
-                                    Thread.Sleep(result);
-                                });
-                            }
-                        }
-                    });
+                    }
+                    else
+                    {
+                        MessageBox.Show("Input should be an integer.");
+                    }
                 }
-                else
+                else // Task is running, stop the task
                 {
-                    MessageBox.Show("输入的数字不正确，必须是正整数");
+                    isTaskRunning = false;
+                    is_begin.Text = "Start";
+                    is_ms.ReadOnly = false;
                 }
             };
+        }
+
+        private void is_begin_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

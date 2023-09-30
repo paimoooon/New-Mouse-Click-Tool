@@ -11,10 +11,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
 namespace MouseClickTool
-{/// <summary>
-/// 怎么简单怎么来了
-/// </summary>
-/// 
+{
     public partial class Form1 : Form
     {
         [STAThread]
@@ -25,7 +22,7 @@ namespace MouseClickTool
             Application.Run(new Form1());
         }
 
-        //新方法：https://stackoverflow.com/questions/5094398/how-to-programmatically-mouse-move-click-right-click-and-keypress-etc-in-winfo
+        // 新方法：https://stackoverflow.com/questions/5094398/how-to-programmatically-mouse-move-click-right-click-and-keypress-etc-in-winfo
         internal class MouseSimulator
         {
             [DllImport("user32.dll", SetLastError = true)]
@@ -98,11 +95,20 @@ namespace MouseClickTool
         }
 
         private bool isTaskRunning = false; // Added boolean variable
+                                            // 导入Windows API函数
+        [DllImport("user32.dll")]
+        private static extern bool RegisterHotKey(IntPtr hWnd, int id, int fsModifiers, int vk);
 
+        [DllImport("user32.dll")]
+        private static extern bool UnregisterHotKey(IntPtr hWnd, int id);
+
+        // 热键ID
+        private const int HOTKEY_ID = 1;
         public Form1()
         {
             InitializeComponent();
             this.comboBox1.SelectedIndex = 0;
+            RegisterHotKey(this.Handle, HOTKEY_ID, 0, (int)Keys.F9);
             is_begin.Click += (s, e) =>
             {
                 if (!isTaskRunning) // Task is not running
@@ -178,6 +184,28 @@ namespace MouseClickTool
             };
         }
 
+        protected override void WndProc(ref Message m)
+        {
+            base.WndProc(ref m);
+
+            const int WM_HOTKEY = 0x0312;
+            if (m.Msg == WM_HOTKEY)
+            {
+                if (m.WParam.ToInt32() == HOTKEY_ID)
+                {
+                    is_begin.PerformClick();
+                }
+            }
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            // 取消注册全局热键
+            UnregisterHotKey(this.Handle, HOTKEY_ID);
+
+            base.OnFormClosing(e);
+        }
+
         private void is_begin_Click(object sender, EventArgs e)
         {
 
@@ -199,6 +227,21 @@ namespace MouseClickTool
         }
 
         private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void is_ms_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox4_Enter(object sender, EventArgs e)
         {
 
         }

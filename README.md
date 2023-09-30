@@ -19,4 +19,4 @@ This program automatedly simulates the clicking of one of the mouse buttons at a
 
 ## Screenshot
 
-![1696078509068](image/README/1696078509068.png)
+![1696083188475](image/README/1696083188475.png)

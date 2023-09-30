@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -50,7 +51,7 @@
             // 
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
             this.groupBox1.Location = new System.Drawing.Point(14, 14);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox1.Name = "groupBox1";
@@ -66,7 +67,7 @@
             this.label2.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.label2.Location = new System.Drawing.Point(184, 40);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(520, 29);
+            this.label2.Size = new System.Drawing.Size(687, 37);
             this.label2.TabIndex = 1;
             this.label2.Text = "https://github.com/iamverycute/MouseClickTool";
             this.label2.Click += new System.EventHandler(this.label2_Click);
@@ -76,7 +77,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(24, 40);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(167, 29);
+            this.label1.Size = new System.Drawing.Size(218, 37);
             this.label1.TabIndex = 0;
             this.label1.Text = "Modified upon";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -84,7 +85,7 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.textBox1);
-            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
             this.groupBox2.Location = new System.Drawing.Point(14, 127);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox2.Name = "groupBox2";
@@ -115,7 +116,7 @@
             this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Controls.Add(this.is_ms);
             this.groupBox3.Controls.Add(this.is_begin);
-            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
             this.groupBox3.Location = new System.Drawing.Point(14, 294);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox3.Name = "groupBox3";
@@ -136,7 +137,7 @@
             this.comboBox1.Location = new System.Drawing.Point(329, 58);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(173, 37);
+            this.comboBox1.Size = new System.Drawing.Size(173, 45);
             this.comboBox1.TabIndex = 4;
             // 
             // label4
@@ -145,7 +146,7 @@
             this.label4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label4.Location = new System.Drawing.Point(24, 60);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(181, 29);
+            this.label4.Size = new System.Drawing.Size(241, 37);
             this.label4.TabIndex = 3;
             this.label4.Text = "Frequency (ms)";
             // 
@@ -156,14 +157,14 @@
             this.is_ms.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.is_ms.MaxLength = 10;
             this.is_ms.Name = "is_ms";
-            this.is_ms.Size = new System.Drawing.Size(112, 35);
+            this.is_ms.Size = new System.Drawing.Size(112, 44);
             this.is_ms.TabIndex = 1;
             this.is_ms.Text = "500";
             this.is_ms.TextChanged += new System.EventHandler(this.is_ms_TextChanged);
             // 
             // is_begin
             // 
-            this.is_begin.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.is_begin.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
             this.is_begin.Location = new System.Drawing.Point(521, 36);
             this.is_begin.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.is_begin.Name = "is_begin";
@@ -176,7 +177,7 @@
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.textBox2);
-            this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
             this.groupBox4.Location = new System.Drawing.Point(630, 127);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox4.Name = "groupBox4";
@@ -191,27 +192,29 @@
             // 
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox2.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
             this.textBox2.Location = new System.Drawing.Point(102, 55);
             this.textBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(48, 48);
+            this.textBox2.Size = new System.Drawing.Size(65, 58);
             this.textBox2.TabIndex = 0;
             this.textBox2.Text = "F9";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(900, 438);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.Name = "Form1";

@@ -9,6 +9,7 @@ using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using GlobalHotKey;
 
 namespace MouseClickTool
 {
@@ -95,20 +96,17 @@ namespace MouseClickTool
         }
 
         private bool isTaskRunning = false; // Added boolean variable
-                                            // 导入Windows API函数
-        [DllImport("user32.dll")]
-        private static extern bool RegisterHotKey(IntPtr hWnd, int id, int fsModifiers, int vk);
+        private HotKeyManager hotKeyManager;
 
-        [DllImport("user32.dll")]
-        private static extern bool UnregisterHotKey(IntPtr hWnd, int id);
-
-        // 热键ID
-        private const int HOTKEY_ID = 1;
         public Form1()
         {
             InitializeComponent();
             this.comboBox1.SelectedIndex = 0;
-            RegisterHotKey(this.Handle, HOTKEY_ID, 0, (int)Keys.F9);
+
+            hotKeyManager = new HotKeyManager();
+            hotKeyManager.Register(System.Windows.Input.Key.F9, System.Windows.Input.ModifierKeys.None);
+            hotKeyManager.KeyPressed += HotKeyManager_KeyPressed;
+
             is_begin.Click += (s, e) =>
             {
                 if (!isTaskRunning) // Task is not running
@@ -183,26 +181,14 @@ namespace MouseClickTool
                 }
             };
         }
-
-        protected override void WndProc(ref Message m)
+        private void HotKeyManager_KeyPressed(object sender, KeyPressedEventArgs e)
         {
-            base.WndProc(ref m);
-
-            const int WM_HOTKEY = 0x0312;
-            if (m.Msg == WM_HOTKEY)
-            {
-                if (m.WParam.ToInt32() == HOTKEY_ID)
-                {
-                    is_begin.PerformClick();
-                }
-            }
+            is_begin.PerformClick();
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            // 取消注册全局热键
-            UnregisterHotKey(this.Handle, HOTKEY_ID);
-
+            hotKeyManager.Dispose();
             base.OnFormClosing(e);
         }
 

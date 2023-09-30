@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("MouseClickTool")]
-[assembly: AssemblyDescription("鼠标连点器")]
+[assembly: AssemblyDescription("MouseClickTool")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("iamverylovely")]
+[assembly: AssemblyCompany("paimoooon")]
 [assembly: AssemblyProduct("MouseClickTool")]
-[assembly: AssemblyCopyright("Copyright © 2020 iamverylovely")]
+[assembly: AssemblyCopyright("Copyright © 2023 paimoooon")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
